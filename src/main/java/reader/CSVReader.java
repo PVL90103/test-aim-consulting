@@ -7,12 +7,12 @@ public class CSVReader implements Reader {
 
     private final static String DELIMITER = ";";
     private final String inputFile;
-    private boolean isHeaderRead = false;
 
 
     public CSVReader(String inputFile) {
         this.inputFile = inputFile;
     }
+
 
     @Override
     public List<List<String>> readLines() {
@@ -20,6 +20,9 @@ public class CSVReader implements Reader {
         String line = "";
 
         try (BufferedReader br = new BufferedReader(new FileReader(inputFile))){
+
+            //first line is header
+            br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(DELIMITER);
                 records.add(Arrays.asList(values));
@@ -42,8 +45,6 @@ public class CSVReader implements Reader {
                 valuesMap.put(temp, i);
                 i++;
             }
-
-            isHeaderRead = true;
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -4,9 +4,10 @@ import java.util.*;
 
 public class CSVParser {
 
-    public static String getField(Map<String, Integer> header) {
-        Set<String> fields = header.keySet();
-        return null;
+    public static String getFieldFromHeaderAsString(List<String> header, int position) {
+        String[] fields = header.toArray(new String[0]);
+        System.out.println(Arrays.toString(fields));
+        return fields[position];
     }
 
     public static String getElementsAsString(List<List<String>> values, int position) {

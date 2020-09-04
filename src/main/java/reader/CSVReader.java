@@ -34,23 +34,21 @@ public class CSVReader implements Reader {
     }
 
     @Override
-    public Map<String, Integer> readHeader() {
-        Map<String, Integer> valuesMap = new HashMap<>();
+    public List<String> readHeader() {
+        //Map<String, Integer> valuesMap = new HashMap<>();
+        List<String> valuesList = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(inputFile))){
             String[] line = br.readLine().split(DELIMITER);
 
-            int i = 0;
-            for (String temp: line){
-                valuesMap.put(temp, i);
-                i++;
-            }
+            //int i = 0;
+            valuesList.addAll(Arrays.asList(line));
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return valuesMap;
+        return valuesList;
     }
 
 }

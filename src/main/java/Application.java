@@ -9,9 +9,9 @@ public class Application {
 
         CSVReader csvReader = new CSVReader("src/main/resources/input2.csv");
 
-        Map<String,Integer> header = csvReader.readHeader();
+        //Map<String,Integer> header = csvReader.readHeader();
 
-        System.out.println(header.toString());
+        //System.out.println(header.toString());
 
         List<List<String>> lines = csvReader.readLines();
 

@@ -7,5 +7,5 @@ public interface Reader {
 
     List<List<String>> readLines();
 
-    Map<String, Integer> readHeader();
+    List<String> readHeader();
 }

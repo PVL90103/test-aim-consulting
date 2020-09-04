@@ -35,13 +35,11 @@ public class CSVReader implements Reader {
 
     @Override
     public List<String> readHeader() {
-        //Map<String, Integer> valuesMap = new HashMap<>();
         List<String> valuesList = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(inputFile))){
             String[] line = br.readLine().split(DELIMITER);
 
-            //int i = 0;
             valuesList.addAll(Arrays.asList(line));
 
         } catch (IOException e) {

@@ -6,7 +6,7 @@ public class CSVParser {
 
     public static String getFieldFromHeaderAsString(List<String> header, int position) {
         String[] fields = header.toArray(new String[0]);
-        System.out.println(Arrays.toString(fields));
+        //System.out.println(Arrays.toString(fields));
         return fields[position];
     }
 

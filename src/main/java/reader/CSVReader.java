@@ -15,7 +15,7 @@ public class CSVReader implements Reader {
 
 
     @Override
-    public List<List<String>> readLines() {
+    public synchronized List<List<String>> readLines() {
         List<List<String>> records = new ArrayList<>();
         String line = "";
 
@@ -34,7 +34,7 @@ public class CSVReader implements Reader {
     }
 
     @Override
-    public List<String> readHeader() {
+    public synchronized List<String> readHeader() {
         List<String> valuesList = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(inputFile))){

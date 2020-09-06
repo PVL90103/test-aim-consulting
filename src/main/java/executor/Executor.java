@@ -1,20 +1,25 @@
-package writer;
+package executor;
 
-import org.junit.Test;
 import reader.CSVReader;
+import writer.CSVWriter;
 
 import java.util.List;
 
-public class CSVWriterTest {
+public class Executor extends Thread {
 
-    @Test
-    public void writeTest() {
-        CSVReader csvReader = new CSVReader("src/main/resources/input2.csv");
+    private final CSVReader csvReader;
+
+    public Executor(CSVReader csvReader) {
+        this.csvReader = csvReader;
+
+    }
+
+    @Override
+    public void run() {
         List<List<String>> values = csvReader.readLines();
         List<String> header = csvReader.readHeader();
 
         CSVWriter csvWriter = new CSVWriter(header, values);
         csvWriter.write();
-
     }
 }

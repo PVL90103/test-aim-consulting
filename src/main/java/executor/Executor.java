@@ -5,13 +5,15 @@ import writer.CSVWriter;
 
 import java.util.List;
 
+/**
+ * Class Executor has constructor with CSVReader as a parameter. Method run() create CSVWriter and call method write().
+ */
 public class Executor extends Thread {
 
     private final CSVReader csvReader;
 
     public Executor(CSVReader csvReader) {
         this.csvReader = csvReader;
-
     }
 
     @Override

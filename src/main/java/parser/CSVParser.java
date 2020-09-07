@@ -2,14 +2,26 @@ package parser;
 
 import java.util.*;
 
+/**
+ * Class CSVParser provide methods that parse .csv files
+ */
 public class CSVParser {
 
+    /**
+     * @param header Header from file
+     * @param position Number of the field from the header
+     * @return Name of a field from the header at the position(position) as String
+     */
     public static String getFieldFromHeaderAsString(List<String> header, int position) {
         String[] fields = header.toArray(new String[0]);
-        //System.out.println(Arrays.toString(fields));
         return fields[position];
     }
 
+    /**
+     * @param values All elements from the file
+     * @param position Number of the column
+     * @return All elements from the column as String
+     */
     public static String getElementsAsString(List<List<String>> values, int position) {
 
         StringBuilder elements = new StringBuilder();

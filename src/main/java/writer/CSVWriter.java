@@ -5,17 +5,29 @@ import java.util.List;
 
 import static parser.CSVParser.*;
 
-
+/**
+ * Class CSVWriter implements interface Writer
+ */
 public class CSVWriter implements Writer {
 
     private final List<String> header;
     private final List<List<String>> values;
 
+    /**
+     * Constructor has two parameters
+     * @param header is header
+     * @param values is all elements
+     */
     public CSVWriter(List<String> header, List<List<String>> values) {
         this.header = header;
         this.values = values;
     }
 
+    /**
+     * This method writes the elements from each column in the file named by its field from the header.
+     * The files contain at the directory "src/main/resources/output/"
+     * Synchronized guarantees that no other thread can interrupt the execution of the method.
+     */
     @Override
     public synchronized void write() {
         for(int i = 0; i < header.size(); i++) {

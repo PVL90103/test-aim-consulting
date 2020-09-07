@@ -9,7 +9,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Class Printer has one method print()
+ */
 public class Printer {
+
+    /**
+     * This method prints the dialog with user. User could type the paths of the files.
+     * When user has selected files and type "ok" the Executor starts the threads for each file.
+     */
     public static void print() {
 
         Scanner in = new Scanner(System.in);
@@ -42,22 +50,5 @@ public class Printer {
                 executor.start();
             }
         }
-//        String fileName1 = "src/main/resources/input1.csv";
-//        String fileName2 = "src/main/resources/input2.csv";
-//        String fileName3 = "src/main/resources/biostats.csv";
-//
-//        CSVReader csvReader1 = new CSVReader(fileName1);
-//        CSVReader csvReader2 = new CSVReader(fileName2);
-//        CSVReader csvReader3 = new CSVReader(fileName3);
-//
-//
-//        Executor executor1 = new Executor(csvReader1);
-//        Executor executor2 = new Executor(csvReader2);
-//        Executor executor3 = new Executor(csvReader3);
-//
-//        executor1.start();
-//        executor2.start();
-//        executor3.start();
-
     }
 }

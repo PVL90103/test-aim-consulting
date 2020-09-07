@@ -3,6 +3,10 @@ package reader;
 import java.io.*;
 import java.util.*;
 
+
+/**
+ * Class CSVReader implements interface Reader
+ */
 public class CSVReader implements Reader {
 
     private final static String DELIMITER = ";";
@@ -13,7 +17,10 @@ public class CSVReader implements Reader {
         this.inputFile = inputFile;
     }
 
-
+    /**
+     * This method read lines without header. Synchronized guarantees that no other thread can interrupt the execution of the method.
+     * @return All lines from .csv file as list of lists
+     */
     @Override
     public synchronized List<List<String>> readLines() {
         List<List<String>> records = new ArrayList<>();
@@ -33,6 +40,10 @@ public class CSVReader implements Reader {
         return records;
     }
 
+    /**
+     * This method reads the header. Synchronized guarantees that no other thread can interrupt the execution of the method.
+     * @return All fields from header(first line in .csv file) as list
+     */
     @Override
     public synchronized List<String> readHeader() {
         List<String> valuesList = new ArrayList<>();

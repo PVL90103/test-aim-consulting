@@ -30,24 +30,28 @@ public class CSVWriter implements Writer {
      */
     @Override
     public synchronized void write() {
-        for(int i = 0; i < header.size(); i++) {
-            StringBuilder outputFile = new StringBuilder();
-            outputFile.append("src/main/resources/output/");
-            outputFile.append(getFieldFromHeaderAsString(header, i));
-            outputFile.append(".txt");
 
-            File file = new File(String.valueOf(outputFile));
-            try {
-                boolean isFileCreated = file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))){
-                bw.write(getElementsAsString(values, i));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+//        File directory = new File("src/main/resources/output/");
+//        if (!directory.isDirectory()) directory.mkdir();
+//
+//        for(int i = 0; i < header.size(); i++) {
+//            StringBuilder outputFile = new StringBuilder();
+//            outputFile.append("src/main/resources/output/");
+//            outputFile.append(getFieldFromHeaderAsString(header, i));
+//            outputFile.append(".txt");
+//
+//            File file = new File(String.valueOf(outputFile));
+//            try {
+//                boolean isFileCreated = file.createNewFile();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//            try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))){
+//                bw.write(getElements(values, i));
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 }

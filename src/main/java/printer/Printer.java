@@ -39,6 +39,7 @@ public class Printer {
                 }
                 if (file.exists() && !file.isDirectory()) files.add(answer);
             }
+            System.out.println("========================================================");
             //clear the screen
             System.out.flush();
         }

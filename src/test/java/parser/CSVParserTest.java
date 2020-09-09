@@ -4,7 +4,9 @@ import org.junit.Test;
 import reader.CSVReader;
 
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 import static parser.CSVParser.getElements;
@@ -28,10 +30,14 @@ public class CSVParserTest {
     public void getElementsTest() {
         CSVReader csvReader = new CSVReader("src/main/resources/input1.csv");
         List<List<String>> lines = csvReader.readLines();
-        List<String> expected = Arrays.asList("/hello/уточка", "/hello/лошадка", "/hello/собачка");
+        Set<String> expected = new LinkedHashSet<>();
+        expected.add("/hello/уточка");
+        expected.add("/hello/лошадка");
+        expected.add("/hello/собачка");
+
         int position = 2;
 
-        List<String> actual = getElements(lines, position);
+        Set<String> actual = getElements(lines, position);
         assertEquals(expected, actual);
     }
 }

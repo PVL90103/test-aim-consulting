@@ -20,17 +20,15 @@ public class CSVParser {
     /**
      * @param values All elements from the file
      * @param position Number of the column
-     * @return Unique elements from the column as List
+     * @return Unique elements from the column as Set
      */
-    public static List<String> getElements(List<List<String>> values, int position) {
+    public static Set<String> getElements(List<List<String>> values, int position) {
 
-        List<String> uniqueElements = new ArrayList<>();
+        Set<String> uniqueElements = new LinkedHashSet<>();
         for (List line: values) {
             for (int i = 0; i < line.size(); i++){
                 if (i == position) {
-                    if (!uniqueElements.contains(line.get(i).toString())) {
-                        uniqueElements.add(line.get(i).toString());
-                    }
+                    uniqueElements.add(line.get(i).toString());
                 }
             }
         }

@@ -21,7 +21,8 @@ public class Executor extends Thread {
         List<List<String>> values = csvReader.readLines();
         List<String> header = csvReader.readHeader();
 
-        CSVWriter csvWriter = new CSVWriter(header, values);
-        csvWriter.write();
+
+        //CSVWriter csvWriter = new CSVWriter(header, values);
+        //csvWriter.write();
     }
 }

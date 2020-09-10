@@ -1,5 +1,7 @@
 package parser;
 
+import struct.Struct;
+
 import java.util.*;
 
 /**
@@ -35,4 +37,5 @@ public class CSVParser {
 
         return uniqueElements;
     }
+
 }

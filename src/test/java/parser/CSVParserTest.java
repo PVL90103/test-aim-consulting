@@ -36,7 +36,6 @@ public class CSVParserTest {
         expected.add("/hello/собачка");
 
         int position = 2;
-
         Set<String> actual = getElements(lines, position);
         assertEquals(expected, actual);
     }

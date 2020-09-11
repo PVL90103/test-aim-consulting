@@ -8,14 +8,13 @@ public class Struct implements Comparable<Struct>{
     private final String fileName;
     private Set<String> values;
 
-    public Struct(String fileName, Set values) {
+    public Struct(String fileName, Set<String> values) {
         this.fileName = fileName;
         this.values = values;
     }
 
-    public Set<String> addValues(Set<String> values) {
+    public void addValues(Set<String> values) {
         this.values.addAll(values);
-        return this.values;
     }
 
     public Set<String> getValues() {

@@ -38,4 +38,20 @@ public class CSVParser {
         return uniqueElements;
     }
 
+    /**
+     * @param structList consists names of files and unique values(names can repeat)
+     * @return distinct list of Struct(names of files are unique and values are unique)
+     */
+    public static List<Struct> getFileStructure(List<Struct> structList) {
+        for (int i = 0; i < structList.size(); i++) {
+            for (int j = i; j < structList.size(); j++) {
+                if ((i != j) && (structList.get(i).compareTo(structList.get(j)) == 0)) {
+                    structList.get(i).addValues(structList.get(j).getValues());
+                    structList.remove(j);
+                }
+            }
+        }
+
+        return structList;
+    }
 }

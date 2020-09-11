@@ -13,11 +13,12 @@ public class Struct implements Comparable<Struct>{
         this.values = values;
     }
 
-    public void addValues(Set<String> values) {
+    public Set<String> addValues(Set<String> values) {
         this.values.addAll(values);
+        return this.values;
     }
 
-    public Set getValues() {
+    public Set<String> getValues() {
         return values;
     }
 
@@ -35,5 +36,13 @@ public class Struct implements Comparable<Struct>{
     @Override
     public int compareTo(Struct struct) {
         return this.fileName.compareTo(struct.getFileName());
+    }
+
+    @Override
+    public String toString() {
+        return "Struct{" +
+                "fileName='" + fileName + '\'' +
+                ", values=" + values +
+                '}';
     }
 }

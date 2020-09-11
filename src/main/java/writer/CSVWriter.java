@@ -1,5 +1,7 @@
 package writer;
 
+import struct.Struct;
+
 import java.io.*;
 import java.util.List;
 
@@ -31,8 +33,8 @@ public class CSVWriter implements Writer {
     @Override
     public synchronized void write() {
 
-//        File directory = new File("src/main/resources/output/");
-//        if (!directory.isDirectory()) directory.mkdir();
+        File directory = new File("src/main/resources/output/");
+        if (!directory.isDirectory()) directory.mkdir();
 //
 //        for(int i = 0; i < header.size(); i++) {
 //            StringBuilder outputFile = new StringBuilder();

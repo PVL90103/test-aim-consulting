@@ -43,7 +43,7 @@ public class CSVWriter implements Writer {
             try {
                 boolean isFileCreated = f.createNewFile();
 
-                if (isFileCreated) {
+                if (isFileCreated || f.exists()) {
                     //Creates string of values for writing
                     StringBuilder values = new StringBuilder();
                     for (String i : file.getValues()) {

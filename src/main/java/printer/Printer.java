@@ -47,14 +47,31 @@ public class Printer {
             //clear the screen
             System.out.flush();
         }
+        //Starts handling files
+        startHandling(filesForReading);
+    }
 
+
+    /**
+     * This method handling the files
+     * @param filesForReading
+     */
+    private static void startHandling(List<String> filesForReading) {
+        //Create synchronized list
         List<Struct> fileStructure = Collections.synchronizedList(new ArrayList<>());
+
 
         if (!filesForReading.isEmpty()) {
             for(String item : filesForReading) {
+
+                //Create csvreader fir file
                 CSVReader csvReader = new CSVReader(item);
+
+                //Create and start thread executor
                 Executor executor = new Executor(csvReader, fileStructure);
                 executor.start();
+
+                //Waiting for thread finish
                 try {
                     executor.join();
                 } catch (InterruptedException e) {
@@ -62,8 +79,11 @@ public class Printer {
                 }
             }
 
+            //Create csvwriter and give it unique elements from all files
             CSVWriter csvWriter = new CSVWriter(getDistinctFileStructure(fileStructure));
             csvWriter.write();
+
+            System.out.println("The results have been written at the directory: src/main/resources/output");
         }
     }
 }

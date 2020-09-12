@@ -2,12 +2,16 @@ package printer;
 
 import executor.Executor;
 import reader.CSVReader;
+import struct.Struct;
+import writer.CSVWriter;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+
+import static parser.CSVParser.getDistinctFileStructure;
 
 /**
  * Class Printer has one method print()
@@ -22,11 +26,11 @@ public class Printer {
 
         Scanner in = new Scanner(System.in);
         String answer = "";
-        List<String> files = new ArrayList<>();
+        List<String> filesForReading = new ArrayList<>();
 
         while (!answer.equalsIgnoreCase("ok")) {
             System.out.println("Your selected files: " );
-            files.forEach(System.out::println);
+            filesForReading.forEach(System.out::println);
             System.out.println("========================================================");
             System.out.println("Write the full path of your file, or write ok to cancel");
             System.out.println("-->");
@@ -37,19 +41,29 @@ public class Printer {
                 if (!file.exists() || file.isDirectory()) {
                     System.out.println("File not found");
                 }
-                if (file.exists() && !file.isDirectory()) files.add(answer);
+                if (file.exists() && !file.isDirectory()) filesForReading.add(answer);
             }
             System.out.println("========================================================");
             //clear the screen
             System.out.flush();
         }
 
-        if (!files.isEmpty()) {
-            for(String item : files) {
+        List<Struct> fileStructure = Collections.synchronizedList(new ArrayList<>());
+
+        if (!filesForReading.isEmpty()) {
+            for(String item : filesForReading) {
                 CSVReader csvReader = new CSVReader(item);
-                Executor executor = new Executor(csvReader);
+                Executor executor = new Executor(csvReader, fileStructure);
                 executor.start();
+                try {
+                    executor.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
+
+            CSVWriter csvWriter = new CSVWriter(getDistinctFileStructure(fileStructure));
+            csvWriter.write();
         }
     }
 }

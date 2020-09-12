@@ -1,9 +1,12 @@
 package executor;
 
 import reader.CSVReader;
-import writer.CSVWriter;
+import struct.Struct;
 
 import java.util.List;
+
+import static parser.CSVParser.getElements;
+import static parser.CSVParser.getFieldFromHeaderAsString;
 
 /**
  * Class Executor has constructor with CSVReader as a parameter. Method run() create CSVWriter and call method write().
@@ -11,9 +14,11 @@ import java.util.List;
 public class Executor extends Thread {
 
     private final CSVReader csvReader;
+    private List<Struct> fileStructure;
 
-    public Executor(CSVReader csvReader) {
+    public Executor(CSVReader csvReader, List<Struct> fileStructure) {
         this.csvReader = csvReader;
+        this.fileStructure = fileStructure;
     }
 
     @Override
@@ -21,9 +26,9 @@ public class Executor extends Thread {
         List<List<String>> values = csvReader.readLines();
         List<String> header = csvReader.readHeader();
 
-
-
-        //CSVWriter csvWriter = new CSVWriter(header, values);
-        //csvWriter.write();
+        for (int i = 0; i < header.size(); i++) {
+            Struct struct = new Struct(getFieldFromHeaderAsString(header, i), getElements(values, i));
+            fileStructure.add(struct);
+        }
     }
 }

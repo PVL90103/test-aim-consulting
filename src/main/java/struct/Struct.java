@@ -3,6 +3,9 @@ package struct;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * This class represents itself a data structure that ties each file with its values(files get from a header that get from input files)
+ */
 public class Struct implements Comparable<Struct>{
 
     private final String fileName;
@@ -13,6 +16,10 @@ public class Struct implements Comparable<Struct>{
         this.values = values;
     }
 
+    /**
+     * This method adds new unique values in already existed values
+     * @param values
+     */
     public void addValues(Set<String> values) {
         this.values.addAll(values);
     }

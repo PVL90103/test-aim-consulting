@@ -9,7 +9,8 @@ import static parser.CSVParser.getElements;
 import static parser.CSVParser.getFieldFromHeaderAsString;
 
 /**
- * Class Executor has constructor with CSVReader as a parameter. Method run() create CSVWriter and call method write().
+ * Class Executor has constructor with CSVReader and file structure as a parameters.
+ * Method run() reads header and values from the file and builds file structure.
  */
 public class Executor extends Thread {
 

@@ -7,6 +7,7 @@ import struct.Struct;
 import writer.CSVWriter;
 import writer.Writer;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,11 +23,13 @@ public class Handler {
         //Create synchronized list
         List<Struct> fileStructure = Collections.synchronizedList(new ArrayList<>());
 
+        //Create list of threads
+        List<Thread> threads = new ArrayList<>();
 
         if (!filesForReading.isEmpty()) {
             for(String item : filesForReading) {
 
-                //Create csvreader fir file
+                //Create csv reader for file
                 Reader csvReader = new CSVReader(item);
 
                 //Create and start thread executor
@@ -34,15 +37,20 @@ public class Handler {
                 Thread thread = new Thread(executor);
                 thread.start();
 
-                //Waiting for thread finish
-                try {
-                    thread.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                threads.add(thread);
             }
 
-            //Create csvwriter and give it unique elements from all files
+            //Waiting for thread finish
+            try {
+                for (Thread thread : threads) {
+                    thread.join();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+
+            //Create csv writer and give it unique elements from all files
             Writer csvWriter = new CSVWriter(getDistinctFileStructure(fileStructure));
             csvWriter.write();
 

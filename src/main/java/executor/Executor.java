@@ -16,7 +16,7 @@ import static parser.CSVParser.getFieldFromHeaderAsString;
 public class Executor implements Runnable {
 
     private final Reader csvReader;
-    private List<Struct> fileStructure;
+    private final List<Struct> fileStructure;
 
     public Executor(Reader csvReader, List<Struct> fileStructure) {
         this.csvReader = csvReader;
@@ -28,9 +28,12 @@ public class Executor implements Runnable {
         List<List<String>> values = csvReader.readLines();
         List<String> header = csvReader.readHeader();
 
-        for (int i = 0; i < header.size(); i++) {
-            Struct struct = new Struct(getFieldFromHeaderAsString(header, i), getElements(values, i));
-            fileStructure.add(struct);
+        synchronized (fileStructure) {
+            for (int i = 0; i < header.size(); i++) {
+                Struct struct = new Struct(getFieldFromHeaderAsString(header, i), getElements(values, i));
+                fileStructure.add(struct);
+            }
         }
     }
 }
+

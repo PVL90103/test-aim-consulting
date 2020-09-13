@@ -12,7 +12,7 @@ public class CSVReaderTest {
     public void readLines() {
         List<String> rowValues = Arrays.asList("1", "жорж", "м");
 
-        CSVReader csvReader = new CSVReader("src/main/resources/input2.csv");
+        Reader csvReader = new CSVReader("src/main/resources/input2.csv");
         List<List<String>> lines = csvReader.readLines();
 
         assertEquals(rowValues, lines.get(2));
@@ -23,7 +23,7 @@ public class CSVReaderTest {
 
         List<String> expectedHeader = Arrays.asList("id", "version", "path");
 
-        CSVReader csvReader = new CSVReader("src/main/resources/input1.csv");
+        Reader csvReader = new CSVReader("src/main/resources/input1.csv");
         List<String> actualHeader = csvReader.readHeader();
 
         assertEquals(expectedHeader, actualHeader);

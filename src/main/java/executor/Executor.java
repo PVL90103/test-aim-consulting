@@ -1,6 +1,7 @@
 package executor;
 
 import reader.CSVReader;
+import reader.Reader;
 import struct.Struct;
 
 import java.util.List;
@@ -12,12 +13,12 @@ import static parser.CSVParser.getFieldFromHeaderAsString;
  * Class Executor has constructor with CSVReader and file structure as a parameters.
  * Method run() reads header and values from the file and builds file structure.
  */
-public class Executor extends Thread {
+public class Executor implements Runnable {
 
-    private final CSVReader csvReader;
+    private final Reader csvReader;
     private List<Struct> fileStructure;
 
-    public Executor(CSVReader csvReader, List<Struct> fileStructure) {
+    public Executor(Reader csvReader, List<Struct> fileStructure) {
         this.csvReader = csvReader;
         this.fileStructure = fileStructure;
     }

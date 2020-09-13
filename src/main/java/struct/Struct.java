@@ -1,6 +1,7 @@
 package struct;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -50,5 +51,19 @@ public class Struct implements Comparable<Struct>{
                 "fileName='" + fileName + '\'' +
                 ", values=" + values +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Struct struct = (Struct) o;
+        return Objects.equals(fileName, struct.fileName) &&
+                Objects.equals(values, struct.values);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fileName, values);
     }
 }

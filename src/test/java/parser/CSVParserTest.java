@@ -2,6 +2,7 @@ package parser;
 
 import org.junit.Test;
 import reader.CSVReader;
+import reader.Reader;
 import struct.Struct;
 
 import java.util.*;
@@ -13,7 +14,7 @@ public class CSVParserTest {
 
     @Test
     public void getFieldFromHeaderAsStringTest() {
-        CSVReader csvReader = new CSVReader("src/main/resources/input1.csv");
+        Reader csvReader = new CSVReader("src/main/resources/input1.csv");
         List<String> header = csvReader.readHeader();
 
 
@@ -26,7 +27,7 @@ public class CSVParserTest {
 
     @Test
     public void getElementsTest() {
-        CSVReader csvReader = new CSVReader("src/main/resources/input1.csv");
+        Reader csvReader = new CSVReader("src/main/resources/input1.csv");
         List<List<String>> lines = csvReader.readLines();
         Set<String> expected = new LinkedHashSet<>();
         expected.add("/hello/уточка");
@@ -89,5 +90,16 @@ public class CSVParserTest {
             System.out.println(i.getFileName());
             System.out.println(i.getValues().toString());
         }
+
+        Set<String> expectedValues = new LinkedHashSet<>();
+        expectedValues.add("м");
+        expectedValues.add("ж");
+        expectedValues.add("M");
+        expectedValues.add("F");
+
+        String expectedFileName = "sex";
+        Struct expectedStruct = new Struct(expectedFileName, expectedValues);
+
+        assertEquals(expectedStruct, distinctList.get(0));
     }
 }
